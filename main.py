@@ -115,7 +115,7 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.setWindowIcon(QIcon(r"icon\Logo.png"))
+        self.setWindowIcon(QIcon(r"icon/Logo.png"))
         self.setWindowTitle("РУСТО")
 
         self.title_label = self.ui.title_label
@@ -123,7 +123,7 @@ class MainWindow(QMainWindow):
 
         self.title_icon = self.ui.title_icon
         self.title_icon.setText("")
-        self.title_icon.setPixmap(QPixmap(r"icon\Logo.png"))
+        self.title_icon.setPixmap(QPixmap(r"icon/Logo.png"))
         self.title_icon.setScaledContents(True)
 
         self.side_menu = self.ui.listWidget
@@ -134,7 +134,7 @@ class MainWindow(QMainWindow):
 
         self.menu_btn = self.ui.menu_btn
         self.menu_btn.setText("")
-        self.menu_btn.setIcon(QIcon(r"icon\close.svg"))
+        self.menu_btn.setIcon(QIcon(r"icon/close.svg"))
         self.menu_btn.setIconSize(QSize(30, 30))
         self.menu_btn.setCheckable(True)
         self.menu_btn.setChecked(False)
@@ -144,15 +144,15 @@ class MainWindow(QMainWindow):
         self.menu_list = [
             {
                 "name": "Теория",
-                "icon": r"icon\orders.svg"
+                "icon": r"icon/orders.svg"
             },
             {
                 "name": "Практика",
-                "icon": r"icon\reports.svg"
+                "icon": r"icon/reports.svg"
             },
             {
                 "name": "NGGYU",
-                "icon": r"icon\customers.svg"
+                "icon": r"icon/customers.svg"
             },
         ]
 
@@ -211,9 +211,9 @@ class MainWindow(QMainWindow):
 
     def button_icon_change(self, status):
         if status:
-            self.menu_btn.setIcon(QIcon(r"icon\open.svg"))
+            self.menu_btn.setIcon(QIcon(r"icon/open.svg"))
         else:
-            self.menu_btn.setIcon(QIcon(r"icon\close.svg"))
+            self.menu_btn.setIcon(QIcon(r"icon/close.svg"))
 
     def change_content(self, row):
         widget_list = self.main_content.findChildren(QWidget)
@@ -267,10 +267,74 @@ class MainWindow(QMainWindow):
         if num >= 101 and num <= 127:
             num = num % 100
             new_window = NewWindow(str(num))
-            filename = f'.\\Text_theory\\Task_{num}.html'
+            filename = f'./Text_theory/Task_{num}.html'
             with open(filename, "r", encoding='utf-8') as f:
                 content = f.read()
                 document = QTextDocument()
+                document.setDefaultStyleSheet("""
+                    body {
+                        font-family: 'Segoe UI', Arial, sans-serif;
+                        font-size: 14px;
+                        line-height: 1.6;
+                        color: #333;
+                        margin: 20px;
+                        background-color: #f9f9f9;
+                    }
+                    
+                    h5 {
+                        color: #2c3e50;
+                        font-size: 18px;
+                        margin: 25px 0 15px 0;
+                        border-bottom: 2px solid #3498db;
+                        padding-bottom: 5px;
+                    }
+                    
+                    table {
+                        border-collapse: collapse;
+                        margin: 15px 0;
+                        width: 100%;
+                        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                        background: white;
+                    }
+                    
+                    th {
+                        background-color: #3498db;
+                        color: white;
+                        font-weight: bold;
+                        padding: 12px;
+                        text-align: left;
+                    }
+                    
+                    td {
+                        padding: 10px;
+                        border: 1px solid #ddd;
+                        vertical-align: top;
+                    }
+                    
+                    tr:nth-child(even) {
+                        background-color: #f8f9fa;
+                    }
+                    
+                    p {
+                        margin: 0 0 15px 0;
+                        text-align: justify;
+                    }
+                    
+                    br {
+                        margin-bottom: 10px;
+                    }
+                    
+                    /* Стиль для заголовков таблиц */
+                    th[colspan="3"], th[colspan="2"] {
+                        background-color: #2980b9;
+                    }
+                    
+                    /* Стиль для примеров */
+                    td:last-child {
+                        color: #27ae60;
+                        font-style: italic;
+                    }
+                """)
                 document.setHtml(unescape(content))
                 new_window.text_browser.setDocument(document)
         
@@ -282,6 +346,70 @@ class MainWindow(QMainWindow):
             for task in data['tasks']:
                 if task['task_number'] == num:
                     document = QTextDocument()
+                    document.setDefaultStyleSheet("""
+                        body {
+                            font-family: 'Segoe UI', Arial, sans-serif;
+                            font-size: 14px;
+                            line-height: 1.6;
+                            color: #333;
+                            margin: 20px;
+                            background-color: #f9f9f9;
+                        }
+                        
+                        h5 {
+                            color: #2c3e50;
+                            font-size: 18px;
+                            margin: 25px 0 15px 0;
+                            border-bottom: 2px solid #3498db;
+                            padding-bottom: 5px;
+                        }
+                        
+                        table {
+                            border-collapse: collapse;
+                            margin: 15px 0;
+                            width: 100%;
+                            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                            background: white;
+                        }
+                        
+                        th {
+                            background-color: #3498db;
+                            color: white;
+                            font-weight: bold;
+                            padding: 12px;
+                            text-align: left;
+                        }
+                        
+                        td {
+                            padding: 10px;
+                            border: 1px solid #ddd;
+                            vertical-align: top;
+                        }
+                        
+                        tr:nth-child(even) {
+                            background-color: #f8f9fa;
+                        }
+                        
+                        p {
+                            margin: 0 0 15px 0;
+                            text-align: justify;
+                        }
+                        
+                        br {
+                            margin-bottom: 10px;
+                        }
+                        
+                        /* Стиль для заголовков таблиц */
+                        th[colspan="3"], th[colspan="2"] {
+                            background-color: #2980b9;
+                        }
+                        
+                        /* Стиль для примеров */
+                        td:last-child {
+                            color: #27ae60;
+                            font-style: italic;
+                        }
+                    """)
                     text = task['examples'][0]['example']
                     document.setHtml(text)
                     new_window.text_browser.setDocument(document)

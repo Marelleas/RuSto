@@ -1,7 +1,7 @@
 {
-    "git.countBadge": "all",
-    "git.detectSubmodules": true,
-    "git.enableStatusBarSync": false,
-    "git.enabled": false,
-    "git.optimisticUpdate": false
+	"git.countBadge": "all",
+	"git.detectSubmodules": true,
+	"git.enableStatusBarSync": false,
+	"git.enabled": true,
+	"git.optimisticUpdate": false
 }
