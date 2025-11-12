@@ -15,7 +15,7 @@ class NewWindow(QDialog):
         self.setGeometry(50, 100, 1300, 600)
 
         self.scroll = QScrollArea()
-        self.scroll.setWidgetResizable(True)
+        self.scroll.setWidgetResizable(True)1
 
         self.text_browser = QTextBrowser() 
         self.scroll.setWidget(self.text_browser)
